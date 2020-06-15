@@ -1,58 +1,56 @@
-#include<bits/stdc++.h>
+#include <bits/stdc++.h>
 using namespace std;
-int v,E;
-vector <vector <int> >g;
-queue <int> q;
+int v, E;
+vector<vector<int>> g;
+queue<int> q;
 vector<int> vis;
 int bfs()
 {
-	if(q.empty())
+	if (q.empty())
 	{
 		return 0;
 	}
-	int curr = q.back();
-	//cout << curr << " ";
+
+	int curr = q.front();
+	cout << curr << " ";
 	//q.pop();
-	for(int i=0;i<g[curr].size(); i++)
+	for (int i = 0; i < g[curr].size(); i++)
 	{
 		int k = g[curr][i];
-		if(vis[k]==0)
+		if (vis[k] == 0)
 		{
 			q.push(k);
-			vis[k]==1;
+			vis[k] = 1;
 		}
-
 	}
 	q.pop();
 	//vis[curr]=2;
 	//cout << curr << " ";
-	 return bfs();
+	return bfs();
 }
-int main ()
+int main()
 {
-	cin >> v>> E;
-	g.resize(v+1);
-	vis.resize(v+1);
-	for(int i=0;i<E;i++)
+	cin >> v >> E;
+	g.resize(v + 1);
+	vis.resize(v + 1);
+	for (int i = 0; i < E; i++)
 	{
-		int v1,v2;
+		int v1, v2;
 		cin >> v1 >> v2;
 		g[v1].push_back(v2);
 		g[v2].push_back(v1);
-
 	}
-	for(int i=1;i<=v;i++)
+	for (int i = 1; i <= v; i++)
 	{
-		vis[v]=0;
+		vis[v] = 0;
 	}
-	for(int i=1;i<=v;i++)
+	for (int i = 1; i <= v; i++)
 	{
-		if(vis[v]==0)
+		if (vis[i] == 0)
 		{
-			q.push(v);
-			vis[v]=1;
+			q.push(i);
+			vis[i] = 1;
 			bfs();
 		}
 	}
-
 }
