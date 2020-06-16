@@ -1,94 +1,95 @@
-#include<stdio.h>
-#include<stdlib.h>
-typedef struct nodes{
+#include <stdio.h>
+#include <stdlib.h>
+typedef struct nodes
+{
 	int value;
 	struct nodes *nextnode;
-
 };
-struct nodes *head=NULL;
+struct nodes *head = NULL;
 int add(int val)
 {
-	struct nodes *node=(struct nodes*)malloc(sizeof(struct nodes));
-	if(head==NULL)
+	struct nodes *node = (struct nodes *)malloc(sizeof(struct nodes));
+	if (head == NULL)
 	{
-		node->value=val;
-		head=node;
-		node->nextnode=NULL;
+		node->value = val;
+		head = node;
+		node->nextnode = NULL;
 	}
 	else
 	{
-		node->value=val;
-		node->nextnode=head;
-		head=node;
+		node->value = val;
+		node->nextnode = head;
+		head = node;
 	}
 }
-int delete(int val)
+int delete (int val)
 {
 	struct nodes *node;
-	node=head;
-	if(head==NULL)
+	node = head;
+	if (head == NULL)
 	{
 		return 0;
 	}
-	if(node->value==val)
+	if (node->value == val)
 	{
-		head=node->nextnode;
+		head = node->nextnode;
 	}
-	while(node->nextnode!=NULL)
+	while (node->nextnode != NULL)
 	{
-		if((node->nextnode)->value==val)
+		if ((node->nextnode)->value == val)
 		{
-			node->nextnode=(node->nextnode)->nextnode;
+			node->nextnode = (node->nextnode)->nextnode;
 		}
-		node=node->nextnode;
+		node = node->nextnode;
 	}
 	return 0;
 }
+
 int display()
 {
 	struct nodes *node;
-	node=head;
-	while(node->nextnode != NULL)
+	node = head;
+	while (node->nextnode != NULL)
 	{
-		printf("%d ",node->value);
+		printf("%d ", node->value);
 		node = node->nextnode;
 	}
-	printf("%d\n",node->value);
+	printf("%d\n", node->value);
 }
+
 int insertatlast(int val)
 {
 	struct nodes *node;
-	struct nodes *new=(struct nodes *)malloc(sizeof(struct nodes));
-	node=head;
-	while(node->nextnode!=NULL)
+	struct nodes *new = (struct nodes *)malloc(sizeof(struct nodes));
+	node = head;
+	while (node->nextnode != NULL)
 	{
-		node=node->nextnode;
+		node = node->nextnode;
 	}
-	new=node;
-	new->value=val;
-	new->nextnode=NULL;
+	new = node;
+	new->value = val;
+	new->nextnode = NULL;
 }
 int reverse()
 {
 	struct nodes *node;
 	struct nodes *temp;
 	struct nodes *temp1;
-	node=head;
-	temp=node->nextnode;
-	node->nextnode=NULL;
-	while(temp->nextnode!=NULL)
+	node = head;
+	temp = node->nextnode;
+	node->nextnode = NULL;
+	while (temp->nextnode != NULL)
 	{
-		temp1=temp->nextnode;
-		temp->nextnode=node;
-		node=temp;
-		temp=temp1;
-
+		temp1 = temp->nextnode;
+		temp->nextnode = node;
+		node = temp;
+		temp = temp1;
 	}
-	temp->nextnode=node;
-	head=temp;
+	temp->nextnode = node;
+	head = temp;
 }
 
-int main ()
+int main()
 {
 	add(10);
 	add(30);
@@ -96,10 +97,7 @@ int main ()
 	add(50);
 	add(60);
 	display();
-	delete(40);
+	delete (40);
 	reverse();
 	display();
 }
-
-
-
